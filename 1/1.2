@@ -1,0 +1,47 @@
+
+input = open('input', 'r')
+Lines = input.readlines()
+
+
+
+high_score1=0
+high_score2=0
+high_score3=0
+elf_count=1
+score=0
+
+
+for line in Lines:
+
+	line = line.strip()
+	if line == "":
+		#new elf
+		elf_count=elf_count+1
+		if score > high_score1:
+			high_score3 = high_score2
+			high_score2 = high_score1
+			high_score1 = score
+			best_elf = elf_count
+		elif score > high_score2:
+			high_score3 = high_score2
+			high_score2 = score
+		elif score > high_score3:
+			high_score3 = score
+		score = 0
+		continue
+
+	line = int(line)
+	score = score +line
+
+if score > high_score1:
+	high_score3 = high_score2
+	high_score2 = high_score1
+	high_score1 = score
+elif score > high_score2:
+	high_score3 = high_score2
+	high_score2 = score
+elif score > high_score3:
+	high_score3 = score
+
+
+print (high_score1 + high_score2 + high_score3)
